@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { FileService } from 'app/io/file.service';
 import { MainFileService } from 'app/services/main-file.service';
 import { KeyboardInput } from '../core/input';
-import { ShortcutService } from './shortcut.service';
+// import { ShortcutService } from './shortcut.service';
 
 @Injectable( {
 	providedIn: 'root'
@@ -14,7 +14,7 @@ import { ShortcutService } from './shortcut.service';
 export class EditorService {
 
 	constructor (
-		private shortcutService: ShortcutService,
+		// private shortcutService: ShortcutService,
 		private mainFileService: MainFileService,
 		public settings: EditorSettings
 	) {
@@ -39,12 +39,11 @@ export class EditorService {
 	}
 
 	onKeyDown ( e: KeyboardEvent ) {
-
 		// fire the event for the whole application
 		KeyboardInput.OnKeyDown( e );
 
 		// handle shortcuts
-		ShortcutService.handleKeyDown( e );
+		// ShortcutService.handleKeyDown( e );
 
 	}
 
@@ -62,24 +61,10 @@ export class EditorService {
 } )
 export class EditorSettings {
 
-	private settingsPath: string;
 	private settings = {};
 
-	constructor ( private fileService: FileService ) {
+	constructor (  ) {
 
-		// const projectFolder = this.fileService.projectFolder;
-
-		// try {
-
-		// 	this.settingsPath = fileService.join( projectFolder, 'settings.json' );
-
-		// 	this.loadSettings();
-
-		// } catch ( error ) {
-
-		// 	console.log( error );
-
-		// }
 	}
 
 	get esminiEnabled (): boolean {
@@ -112,39 +97,6 @@ export class EditorSettings {
 
 	setSetting ( key: string, value: any ) {
 		this.settings[ key ] = value;
-		this.saveSettings();
-	}
-
-	private loadSettings () {
-
-		if ( this.fileService.fs.existsSync( this.settingsPath ) ) {
-
-			this.settings = JSON.parse( this.fileService.fs.readFileSync( this.settingsPath, 'utf-8' ) );
-
-		} else {
-
-			this.settings = {};
-
-			this.saveSettings();
-
-		}
-
-	}
-
-	private saveSettings () {
-
-		const value = JSON.stringify( this.settings, null, 2 );
-
-		try {
-
-			this.fileService.fs.writeFileSync( this.settingsPath, value, 'utf-8' );
-
-		} catch ( error ) {
-
-			console.error( error );
-
-		}
-
 	}
 
 }

@@ -68,7 +68,7 @@ export class MainFileService {
 
 		this.currentFile = new IFile( 'Untitled.scene' );
 
-		this.electronService.setTitle( this.currentFile.name );
+		// this.electronService.setTitle( this.currentFile.name );
 
 		this.setMap( map || new TvMap() );
 
