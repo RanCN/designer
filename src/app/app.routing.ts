@@ -27,7 +27,7 @@ const appRoutes: Routes = [
 	},
 	{
 		path: 'editor',
-		canActivate: [ AuthGuard ],
+		// canActivate: [ AuthGuard ],
 		component: EditorLayoutComponent,
 		children: [
 			{

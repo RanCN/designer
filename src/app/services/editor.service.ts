@@ -67,19 +67,19 @@ export class EditorSettings {
 
 	constructor ( private fileService: FileService ) {
 
-		const projectFolder = this.fileService.projectFolder;
+		// const projectFolder = this.fileService.projectFolder;
 
-		try {
+		// try {
 
-			this.settingsPath = fileService.join( projectFolder, 'settings.json' );
+		// 	this.settingsPath = fileService.join( projectFolder, 'settings.json' );
 
-			this.loadSettings();
+		// 	this.loadSettings();
 
-		} catch ( error ) {
+		// } catch ( error ) {
 
-			console.log( error );
+		// 	console.log( error );
 
-		}
+		// }
 	}
 
 	get esminiEnabled (): boolean {
